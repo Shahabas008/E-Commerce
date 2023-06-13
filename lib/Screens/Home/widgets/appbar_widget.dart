@@ -1,4 +1,6 @@
+import 'package:ecommerce/data/dataprovider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AppBarHome extends StatelessWidget {
   const AppBarHome({Key? key}) : super(key: key);
@@ -20,6 +22,8 @@ class AppBarHome extends StatelessWidget {
         IconButton(
           onPressed: () {
             //NAVIGATING TO THE WISHLIST
+            final provider = Provider.of<DataProvider>(context , listen :false);
+            provider.fetchData();
           },
           icon: const Icon(
             Icons.favorite_border,
