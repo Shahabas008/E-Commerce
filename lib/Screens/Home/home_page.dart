@@ -21,10 +21,11 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   void initState() {
-    final dataProvider = Provider.of<DataProvider>(context , listen : false);
+    final dataProvider = Provider.of<DataProvider>(context, listen: false);
     dataProvider.fetchData();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -48,7 +49,7 @@ class _HomePageState extends State<HomePage> {
               ),
               //Featured Products
               Container(
-                height: height,
+                height: 1500,
                 width: width,
                 decoration: BoxDecoration(
                   color: grey,
@@ -59,7 +60,29 @@ class _HomePageState extends State<HomePage> {
                 ),
                 child: const Column(
                   children: [
-                    FeaturedProductsWidget(),
+                    FeaturedProductsWidget(
+                      title: "Featured Products",
+                    ),
+                     SizedBox(
+                      height: 25.0,
+                    ),
+                    CarouselContainerWidget(),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    FeaturedProductsWidget(
+                      title: "Best Sellers",
+                    ),
+                     SizedBox(
+                      height: 25.0,
+                    ),
+                    CarouselContainerWidget(),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    FeaturedProductsWidget(
+                      title: "New Arrivals",
+                    ),
                   ],
                 ),
               ),

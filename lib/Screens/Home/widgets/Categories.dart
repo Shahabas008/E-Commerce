@@ -1,3 +1,4 @@
+import 'package:ecommerce/utils/colors/colors.dart';
 import 'package:flutter/material.dart';
 
 class CategoriesHome extends StatelessWidget {
@@ -28,8 +29,11 @@ class CategoriesHome extends StatelessWidget {
                   onPressed: () {
                     //Navigate to the showDialog of the categories
                   },
-                  child: const Text(
+                  child:  Text(
                     "See all",
+                    style: TextStyle(
+                      color: primary,
+                    ),
                   ),
                 ),
               ],

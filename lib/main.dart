@@ -1,8 +1,9 @@
+import 'package:ecommerce/Screens/Cart/cartpage.dart';
+import 'package:ecommerce/Screens/WishList/wishlist_page.dart';
 import 'package:ecommerce/data/dataprovider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import 'Screens/Home/home_page.dart';
+import 'Screens/widgets/bottomnavigationbar.dart';
 void main(){
   runApp(const MyApp());
 }
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: HomePage(),
+        home: BottomNavigationBarPage(),
       ),
     );
   }

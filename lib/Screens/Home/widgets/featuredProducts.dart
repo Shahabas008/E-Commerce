@@ -1,3 +1,4 @@
+import 'package:ecommerce/utils/colors/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:image_card/image_card.dart';
 import 'package:provider/provider.dart';
@@ -5,8 +6,8 @@ import 'package:provider/provider.dart';
 import '../../../data/dataprovider.dart';
 
 class FeaturedProductsWidget extends StatelessWidget {
-  const FeaturedProductsWidget({Key? key}) : super(key: key);
-
+  const FeaturedProductsWidget({Key? key ,required this.title}) : super(key: key);
+  final String title;
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -20,9 +21,9 @@ class FeaturedProductsWidget extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    "Featured Products",
-                    style: TextStyle(
+                   Text(
+                    title,
+                    style:const TextStyle(
                       color: Colors.black,
                       fontSize: 18.0,
                       fontWeight: FontWeight.w600,
@@ -32,8 +33,11 @@ class FeaturedProductsWidget extends StatelessWidget {
                     onPressed: () {
                       //Navigate to the showDialog of the categories
                     },
-                    child: const Text(
+                    child:  Text(
                       "See all",
+                      style: TextStyle(
+                        color: primary,
+                      ),
                     ),
                   ),
                 ],
@@ -48,7 +52,7 @@ class FeaturedProductsWidget extends StatelessWidget {
               ),
               Expanded(
                 child: SizedBox(
-                  height: height * 0.3,
+                  height: height * 0.32,
                   child: ListView.separated(
                     scrollDirection: Axis.horizontal,
                     itemCount: 10,
@@ -58,7 +62,7 @@ class FeaturedProductsWidget extends StatelessWidget {
                         width: width * 0.5,
                         height: height * 0.5,
                         child: FillImageCard(
-                          contentPadding: EdgeInsets.all(10.0),
+                          contentPadding: const EdgeInsets.all(8.0),
                           heightImage: 100,
                           imageProvider: NetworkImage(snap.image),
                           title: Text(
