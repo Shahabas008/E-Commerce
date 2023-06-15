@@ -62,8 +62,9 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     FeaturedProductsWidget(
                       title: "Featured Products",
+                      seeAllTitle: "Featured Products",
                     ),
-                     SizedBox(
+                    SizedBox(
                       height: 25.0,
                     ),
                     CarouselContainerWidget(),
@@ -72,8 +73,9 @@ class _HomePageState extends State<HomePage> {
                     ),
                     FeaturedProductsWidget(
                       title: "Best Sellers",
+                      seeAllTitle: "Best Sellers",
                     ),
-                     SizedBox(
+                    SizedBox(
                       height: 25.0,
                     ),
                     CarouselContainerWidget(),
@@ -82,6 +84,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     FeaturedProductsWidget(
                       title: "New Arrivals",
+                      seeAllTitle: "New Arrivals",
                     ),
                   ],
                 ),

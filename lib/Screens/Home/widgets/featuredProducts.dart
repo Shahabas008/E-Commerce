@@ -1,3 +1,5 @@
+import 'package:ecommerce/Screens/Details_Page/details_page.dart';
+import 'package:ecommerce/Screens/SeeAll/seeallpage.dart';
 import 'package:ecommerce/utils/colors/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:image_card/image_card.dart';
@@ -6,8 +8,14 @@ import 'package:provider/provider.dart';
 import '../../../data/dataprovider.dart';
 
 class FeaturedProductsWidget extends StatelessWidget {
-  const FeaturedProductsWidget({Key? key ,required this.title}) : super(key: key);
+  const FeaturedProductsWidget({
+    Key? key,
+    required this.title,
+    required this.seeAllTitle,
+  }) : super(key: key);
   final String title;
+  final String seeAllTitle;
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -21,9 +29,9 @@ class FeaturedProductsWidget extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                   Text(
+                  Text(
                     title,
-                    style:const TextStyle(
+                    style: const TextStyle(
                       color: Colors.black,
                       fontSize: 18.0,
                       fontWeight: FontWeight.w600,
@@ -32,8 +40,16 @@ class FeaturedProductsWidget extends StatelessWidget {
                   TextButton(
                     onPressed: () {
                       //Navigate to the showDialog of the categories
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => SeeAllPage(
+                            title: seeAllTitle,
+                          ),
+                        ),
+                      );
                     },
-                    child:  Text(
+                    child: Text(
                       "See all",
                       style: TextStyle(
                         color: primary,
@@ -58,62 +74,78 @@ class FeaturedProductsWidget extends StatelessWidget {
                     itemCount: 10,
                     itemBuilder: (context, index) {
                       final snap = dataProvider.eCommerceDataList[index];
-                      return SizedBox(
-                        width: width * 0.5,
-                        height: height * 0.5,
-                        child: FillImageCard(
-                          contentPadding: const EdgeInsets.all(8.0),
-                          heightImage: 100,
-                          imageProvider: NetworkImage(snap.image),
-                          title: Text(
-                            snap.title,
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
+                      return GestureDetector(
+                        onTap: () {
+                          //NAVIGATE TO THE DETAILS PAGE
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) =>  DetailsPage(
+                                productDescription: snap.description ,
+                                productImage: snap.image ,
+                                productPrice: snap.price,
+                                productRating: snap.rating.rate,
+                                productTitle: snap.title,
+                              ),
                             ),
-                          ),
-                          description: Text(
-                            "₹ ${snap.price}",
-                            style: const TextStyle(
-                              color: Colors.red,
+                          );
+                        },
+                        child: SizedBox(
+                          width: width * 0.5,
+                          height: height * 0.5,
+                          child: FillImageCard(
+                            contentPadding: const EdgeInsets.all(8.0),
+                            heightImage: 100,
+                            imageProvider: NetworkImage(snap.image),
+                            title: Text(
+                              snap.title,
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                          footer: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              RichText(
-                                text: TextSpan(
-                                  children: [
-                                    const WidgetSpan(
-                                      child: Icon(
-                                        Icons.star,
-                                        size: 14,
-                                        color: Colors.yellow,
+                            description: Text(
+                              "₹ ${snap.price}",
+                              style: const TextStyle(
+                                color: Colors.red,
+                              ),
+                            ),
+                            footer: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                RichText(
+                                  text: TextSpan(
+                                    children: [
+                                      const WidgetSpan(
+                                        child: Icon(
+                                          Icons.star,
+                                          size: 14,
+                                          color: Colors.yellow,
+                                        ),
                                       ),
-                                    ),
-                                    TextSpan(
-                                      text: "${snap.rating.rate}",
-                                    ),
-                                  ],
+                                      TextSpan(
+                                        text: "${snap.rating.rate}",
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(
-                                width: 10.0,
-                              ),
-                              Text("${snap.rating.count} Reviews"),
-                              const SizedBox(
-                                width: 10.0,
-                              ),
-                               IconButton(
-                                onPressed: () {
-                                  //Navigate to the product Action
-                                },
-                                icon:const Icon(
-                                  Icons.more_vert,
+                                const SizedBox(
+                                  width: 10.0,
                                 ),
-                              ),
-
-                            ],
+                                Text("${snap.rating.count} Reviews"),
+                                const SizedBox(
+                                  width: 10.0,
+                                ),
+                                IconButton(
+                                  onPressed: () {
+                                    //Navigate to the product Action
+                                  },
+                                  icon: const Icon(
+                                    Icons.more_vert,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       );

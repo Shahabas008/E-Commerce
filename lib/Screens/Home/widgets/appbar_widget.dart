@@ -20,23 +20,23 @@ class AppBarHome extends StatelessWidget {
         ),
       ),
       centerTitle: true,
-      actions: [
-        IconButton(
-          onPressed: () {
-            //NAVIGATING TO THE WISHLIST
-          },
-          icon: const Icon(
-            Icons.favorite_border,
-            color: Colors.black,
-          ),
-        ),
-        IconButton(
-          onPressed: () {
-            //NAVIGATING TO THE CART
-          },
-          icon: const Icon(Icons.shopping_cart_outlined, color: Colors.black),
-        ),
-      ],
+    //   actions: [
+    //     IconButton(
+    //       onPressed: () {
+    //         //NAVIGATING TO THE WISHLIST
+    //       },
+    //       icon: const Icon(
+    //         Icons.favorite_border,
+    //         color: Colors.black,
+    //       ),
+    //     ),
+    //     IconButton(
+    //       onPressed: () {
+    //         //NAVIGATING TO THE CART
+    //       },
+    //       icon: const Icon(Icons.shopping_cart_outlined, color: Colors.black),
+    //     ),
+    //   ],
     );
   }
 }

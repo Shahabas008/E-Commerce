@@ -6,6 +6,7 @@ class AppBarWidgetDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      elevation: 0.5,
       backgroundColor: Colors.white,
       leading: IconButton(
         onPressed: () {
@@ -18,7 +19,8 @@ class AppBarWidgetDetailsPage extends StatelessWidget {
       ),
       title: const Text("Detail Product",
       style: TextStyle(
-        color: Colors.black
+        color: Colors.black,
+        fontFamily: "DMSans",
       ),),
       centerTitle: true,
       actions: [

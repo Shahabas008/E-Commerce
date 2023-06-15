@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:ecommerce/Screens/Home/widgets/featuredProducts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
@@ -21,8 +22,8 @@ class ReviewWidget extends StatelessWidget {
               const Text(
                 "Review (86)",
                 style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18.0,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 16.0,
                 ),
               ),
               RichText(
@@ -32,13 +33,16 @@ class ReviewWidget extends StatelessWidget {
                       child: Icon(
                         Icons.star,
                         size: 20,
-                        color: Colors.yellow,
+                        color: Color(
+                          0xFFFFC120,
+                        ),
                       ),
                     ),
                     TextSpan(
                       text: "5.0",
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ],
@@ -47,55 +51,76 @@ class ReviewWidget extends StatelessWidget {
             ],
           ),
           const SizedBox(
-            height: 35.0,
+            height: 30.0,
           ),
           //REVIEW CONTAINER 1
-          Container(
+          SizedBox(
             width: width,
             height: height * 0.3,
-            child: Column(
+            child: Row(
               children: [
-                Row(
-                  children: [
-                    const CircleAvatar(
-                      radius: 25.0,
+                const Expanded(
+                  child: Align(
+                    alignment: Alignment.topCenter,
+                    child: CircleAvatar(
+                      radius: 20.0,
                       backgroundImage: AssetImage("assets/images/user1.jpg"),
                     ),
-                    const SizedBox(
-                      width: 18.0,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          "Arthur Morgan",
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        RatingBarIndicator(
-                          rating: 2.5,
-                          itemCount: 5,
-                          itemSize: 30.0,
-                          itemBuilder: (context, _) => const Icon(
-                            Icons.star,
-                            color: Colors.red,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+                  ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.all(25.0),
+                Expanded(
+                  flex: 6,
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
-                        width: 20.0,
+                      Row(
+                        children: [
+                          const Text(
+                            "Arthur Morgan",
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(
+                            width: width * 0.30,
+                          ),
+                          const Text(
+                            "2 minutes ago",
+                            style: TextStyle(
+                              fontSize: 12.0,
+                              fontWeight: FontWeight.w400,
+                              color: Color(
+                                0xFF838589,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                      Text(
-                          "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. "),
+                      const SizedBox(
+                        height: 6.17,
+                      ),
+                      RatingBarIndicator(
+                        unratedColor: Colors.white,
+                        rating: 2.5,
+                        itemCount: 5,
+                        itemSize: 18.0,
+                        itemBuilder: (context, _) => const Icon(
+                          Icons.star_outlined,
+                          color: Color(
+                            0xFFFFC120,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 12.74,
+                      ),
+                      const Text(
+                        "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. ",
+                        style: TextStyle(
+                          height: 1.5,
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -103,55 +128,76 @@ class ReviewWidget extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            height: 10.0,
+            height: 20.0,
           ),
           //REVIEW CONTAINER 2
-          Container(
+          SizedBox(
             width: width,
             height: height * 0.3,
-            child: Column(
+            child: Row(
               children: [
-                Row(
-                  children: [
-                    const CircleAvatar(
-                      radius: 25.0,
-                      backgroundImage: AssetImage("assets/images/user2.png"),
+                const Expanded(
+                  child: Align(
+                    alignment: Alignment.topCenter,
+                    child: CircleAvatar(
+                      radius: 20.0,
+                      backgroundImage: AssetImage("assets/images/user1.jpg"),
                     ),
-                    const SizedBox(
-                      width: 18.0,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          "Alan Jacob",
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        RatingBarIndicator(
-                          rating: 2,
-                          itemCount: 5,
-                          itemSize: 30.0,
-                          itemBuilder: (context, _) => const Icon(
-                            Icons.star,
-                            color: Colors.red,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+                  ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.all(25.0),
+                Expanded(
+                  flex: 6,
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
-                        width: 20.0,
+                      Row(
+                        children: [
+                          const Text(
+                            "Arthur Morgan",
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(
+                            width: width * 0.30,
+                          ),
+                          const Text(
+                            "2 minutes ago",
+                            style: TextStyle(
+                              fontSize: 12.0,
+                              fontWeight: FontWeight.w400,
+                              color: Color(
+                                0xFF838589,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                      Text(
-                          "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. "),
+                      const SizedBox(
+                        height: 6.17,
+                      ),
+                      RatingBarIndicator(
+                        unratedColor: Colors.white,
+                        rating: 2.5,
+                        itemCount: 5,
+                        itemSize: 18.0,
+                        itemBuilder: (context, _) => const Icon(
+                          Icons.star_outlined,
+                          color: Color(
+                            0xFFFFC120,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 12.74,
+                      ),
+                      const Text(
+                        "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. ",
+                        style: TextStyle(
+                          height: 1.5,
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -159,55 +205,76 @@ class ReviewWidget extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            height: 10.0,
+            height: 20.0,
           ),
-          //REVIEW CONTAINER 3
-          Container(
+          // //REVIEW CONTAINER 3
+          SizedBox(
             width: width,
             height: height * 0.3,
-            child: Column(
+            child: Row(
               children: [
-                Row(
-                  children: [
-                    const CircleAvatar(
-                      radius: 25.0,
-                      backgroundImage: AssetImage("assets/images/user3.jpg"),
+                const Expanded(
+                  child: Align(
+                    alignment: Alignment.topCenter,
+                    child: CircleAvatar(
+                      radius: 20.0,
+                      backgroundImage: AssetImage("assets/images/user1.jpg"),
                     ),
-                    const SizedBox(
-                      width: 18.0,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          "Alfred Johnson",
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        RatingBarIndicator(
-                          rating: 3.5,
-                          itemCount: 5,
-                          itemSize: 30.0,
-                          itemBuilder: (context, _) => const Icon(
-                            Icons.star,
-                            color: Colors.red,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+                  ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.all(25.0),
+                Expanded(
+                  flex: 6,
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
-                        width: 20.0,
+                      Row(
+                        children: [
+                          const Text(
+                            "Arthur Morgan",
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(
+                            width: width * 0.30,
+                          ),
+                          const Text(
+                            "2 minutes ago",
+                            style: TextStyle(
+                              fontSize: 12.0,
+                              fontWeight: FontWeight.w400,
+                              color: Color(
+                                0xFF838589,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                      Text(
-                          "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. "),
+                      const SizedBox(
+                        height: 6.17,
+                      ),
+                      RatingBarIndicator(
+                        unratedColor: Colors.white,
+                        rating: 2.5,
+                        itemCount: 5,
+                        itemSize: 18.0,
+                        itemBuilder: (context, _) => const Icon(
+                          Icons.star_outlined,
+                          color: Color(
+                            0xFFFFC120,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 12.74,
+                      ),
+                      const Text(
+                        "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. ",
+                        style: TextStyle(
+                          height: 1.5,
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -215,17 +282,17 @@ class ReviewWidget extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            height: 18.0,
+            height: 20.0,
           ),
           ElevatedButton(
             style: OutlinedButton.styleFrom(
-              minimumSize: Size(width, height * 0.09),
-              maximumSize: Size(width, height * 0.09),
+              minimumSize: Size(width, height * 0.09,),
+              maximumSize: Size(width, height * 0.09,),
               backgroundColor: Colors.white,
               foregroundColor: Colors.black,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(18.0),
-                side: const BorderSide(width: 1.5),
+                borderRadius: BorderRadius.circular(10.0,),
+                side: const BorderSide(width: 1.0,),
               ),
             ),
             onPressed: () {
@@ -234,9 +301,9 @@ class ReviewWidget extends StatelessWidget {
             child: const Text(
               "See All Review",
               style: TextStyle(
-                fontSize: 16.0,
+                fontSize: 14.0,
                 color: Colors.black,
-                fontWeight: FontWeight.w300,
+                fontWeight: FontWeight.w500,
               ),
             ),
           ),

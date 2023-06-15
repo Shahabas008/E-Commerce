@@ -6,13 +6,31 @@ import 'package:ecommerce/Screens/Details_Page/widgets/sellercontainerwidget.dar
 import 'package:ecommerce/utils/colors/colors.dart';
 import 'package:flutter/material.dart';
 
+import '../Home/widgets/featuredProducts.dart';
+
 class DetailsPage extends StatelessWidget {
-  const DetailsPage({Key? key}) : super(key: key);
+  const DetailsPage(
+      {Key? key,
+      required this.productTitle,
+      required this.productPrice,
+      required this.productRating,
+      required this.productImage,
+      required this.productDescription})
+      : super(key: key);
+  final String productTitle;
+  final double productPrice;
+  final double productRating;
+  final String productImage;
+  final String productDescription;
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -21,129 +39,167 @@ class DetailsPage extends StatelessWidget {
                 height: 20.0,
               ),
               //IMAGE CONTAINER
-              const DetailImageContainerWidget(),
-              const SizedBox(
-                height: 40.0,
-              ),
-              //TITLE OF THE PRODUCT
-              const Row(
-                children: [
-                  SizedBox(
-                    width: 25.0,
-                  ),
-                  Text(
-                    "TITLE OF THE PRODUCT",
-                    style: TextStyle(
-                      fontSize: 22.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
+              DetailImageContainerWidget(
+                productImage: productImage,
               ),
               const SizedBox(
-                height: 20.0,
+                height: 5.0,
               ),
-              //PRICE OF THE PRODUCT
-              const Row(
-                children: [
-                  SizedBox(
-                    width: 25.0,
-                  ),
-                  Text(
-                    "PRICE OF THE PRODUCT",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 20.0,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 20.0,
-              ),
-              const Row(
-                children: [
-                  SizedBox(
-                    width: 25.0,
-                  ),
-                  Icon(
-                    Icons.star,
-                    color: Colors.yellow,
-                  ),
-                  //RATING OF THE PRODUCT
-                  Text("5.0"),
-                  SizedBox(
-                    width: 50.0,
-                  ),
-                  Text("${80} Review")
-                ],
-              ),
-              const SizedBox(
-                height: 20.0,
-              ),
-              Divider(
-                height: 1.0,
-                indent: 20.0,
-                endIndent: 20.0,
-                thickness: 1,
-                color: grey,
-              ),
-              const SizedBox(
-                height: 10.0,
-              ),
-              //SELLER LISTTILE
-              const SellerContainerWidget(),
-              const SizedBox(
-                height: 10.0,
-              ),
-              Divider(
-                height: 1.0,
-                indent: 20.0,
-                endIndent: 20.0,
-                thickness: 1,
-                color: grey,
-              ),
-              const SizedBox(
-                height: 30.0,
-              ),
-              const Row(
-                children: [
-                  SizedBox(
-                    width: 25.0,
-                  ),
-                  Text(
-                    "Description Product",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                    ),
-                  ),
-                ],
-              ),
-              const Padding(
-                padding: EdgeInsets.all(25.0),
+              Padding(
+                padding: const EdgeInsets.all(
+                  25.0,
+                ),
                 child: Column(
                   children: [
-                    //DESCRIPTION OF THE PRODUCT
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        //TITLE OF THE PRODUCT
+                        Text(
+                          productTitle,
+                          style: const TextStyle(
+                            fontSize: 24.0,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 10.0,
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          //PRICE OF THE PRODUCT
+                          "₹ $productPrice",
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16.0,
+                            color: Colors.red,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 11.0,
+                    ),
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.star,
+                          color: Color(
+                            0xFFFFC120,
+                          ),
+                        ),
+                        //RATING OF THE PRODUCT
+                        Text(
+                          "$productRating",
+                          style: const TextStyle(
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 10.0,
+                        ),
+                        const Text(
+                          "${80} Review",
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 31.0,
+                    ),
+                    const Divider(
+                      height: 1.0,
+                      thickness: 1,
+                      color: Color(0xFFEDEDED),
+                    ),
+                    const SizedBox(
+                      height: 29.0,
+                    ),
+                    //SELLER LIST TILE
+                    const SellerContainerWidget(),
+                    const SizedBox(
+                      height: 30.0,
+                    ),
+                    const Divider(
+                      height: 1.0,
+                      thickness: 1,
+                      color: Color(0xFFEDEDED),
+                    ),
+                    const SizedBox(
+                      height: 30.0,
+                    ),
+                    const Row(
+                      children: [
+                        Text(
+                          "Description Product",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 16.0,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 15.0,
+                    ),
                     Text(
-                        "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. "),
+                      productDescription,
+                      style: const TextStyle(
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 30.0,
+                    ),
+                    const Divider(
+                      height: 1.0,
+                      thickness: 1,
+                      color: Color(0xFFEDEDED),
+                    ),
+                    const SizedBox(
+                      height: 30.0,
+                    ),
+                    const ReviewWidget(),
+                    const SizedBox(
+                      height: 30.0,
+                    ),
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 45.0,
+              Container(
+                decoration: const BoxDecoration(
+                  color: Color(0xFFFAFAFA),
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(
+                      10.0,
+                    ),
+                    topLeft: Radius.circular(
+                      10.0,
+                    ),
+                  ),
+                ),
+                width: width,
+                height: height * 0.6,
+                child: const Padding(
+                  padding: EdgeInsets.fromLTRB(25.0, 20.0, 25.0, 0),
+                  child: FeaturedProductsWidget(
+                    title: "Featured Products",
+                    seeAllTitle: "Featured Products",
+                  ),
+                ),
               ),
-              const ReviewWidget(),
-              // const SizedBox(
-              //   height: 15.0,
-              // ),
-              const FooterButtonsWidget(),
-              const SizedBox(
-                height: 15.0,
-              )
             ],
           ),
         ),
+        floatingActionButton:const FooterButtonsWidget(),
       ),
     );
   }
