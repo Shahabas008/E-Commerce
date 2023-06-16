@@ -33,6 +33,7 @@ class _HomePageState extends State<HomePage> {
     TextEditingController searchController = TextEditingController();
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -40,8 +41,14 @@ class _HomePageState extends State<HomePage> {
               const AppBarHome(),
               //Search TextFormField
               TextFormFieldWidget(searchController: searchController),
+              const SizedBox(
+                height: 30.0,
+              ),
               //Image Carousel Container
               const CarouselContainerWidget(),
+              const SizedBox(
+                height: 30.0,
+              ),
               //Categories
               const CategoriesHome(),
               const SizedBox(
@@ -49,11 +56,11 @@ class _HomePageState extends State<HomePage> {
               ),
               //Featured Products
               Container(
-                height: 1500,
+                height: height*1.85,
                 width: width,
-                decoration: BoxDecoration(
-                  color: grey,
-                  borderRadius: const BorderRadius.only(
+                decoration:const BoxDecoration(
+                  color: Color(0xFFFAFAFA),
+                  borderRadius:  BorderRadius.only(
                     topLeft: Radius.circular(20),
                     topRight: Radius.circular(20),
                   ),
@@ -65,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                       seeAllTitle: "Featured Products",
                     ),
                     SizedBox(
-                      height: 25.0,
+                      height: 40.0,
                     ),
                     CarouselContainerWidget(),
                     SizedBox(
@@ -76,7 +83,7 @@ class _HomePageState extends State<HomePage> {
                       seeAllTitle: "Best Sellers",
                     ),
                     SizedBox(
-                      height: 25.0,
+                      height: 40.0,
                     ),
                     CarouselContainerWidget(),
                     SizedBox(

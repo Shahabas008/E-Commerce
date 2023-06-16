@@ -1,15 +1,19 @@
 
+import 'package:ecommerce/data/model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-void showBottomSheetFunction({required BuildContext context}) {
+import '../../Cart/cartprovider.dart';
+
+void showBottomSheetFunction({required BuildContext context, required ECommerceData eCommerceModel}) {
   final width = MediaQuery.of(context).size.width;
   final height = MediaQuery.of(context).size.height;
   showModalBottomSheet(
       isScrollControlled: true,
       constraints: BoxConstraints(
-        minHeight: height * 0.6,
-        maxHeight: height * 0.6,
+        minHeight: height * 0.61,
+        maxHeight: height * 0.61,
         maxWidth: width * 0.85,
         minWidth: width * 0.5,
       ),
@@ -35,22 +39,26 @@ void showBottomSheetFunction({required BuildContext context}) {
           height: height * 0.5,
           child: Column(
             children: [
-              const Padding(
-                padding: EdgeInsets.all(25.0),
+               Padding(
+                padding:const EdgeInsets.all(25.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    const Text(
                       "Add to Cart",
                       style: TextStyle(
                         fontSize: 16.0,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    Icon(
-                      Icons.close,
+                    IconButton(
+                      onPressed : () {
+                        Navigator.pop(context);
+                      },
+                     icon:const Icon(Icons.close,
                       color: Colors.black,
-                      size: 18,
+                      size: 18,)
+
                     ),
                   ],
                 ),
@@ -242,9 +250,9 @@ void showBottomSheetFunction({required BuildContext context}) {
                     const SizedBox(
                       height: 10.0,
                     ),
-                    const Text(
-                      "₹ 1500",
-                      style: TextStyle(
+                     Text(
+                      "₹ ${eCommerceModel.price}",
+                      style: const TextStyle(
                         fontSize: 14.0,
                         fontWeight: FontWeight.w700,
                       ),
@@ -260,6 +268,8 @@ void showBottomSheetFunction({required BuildContext context}) {
                       ),
                       onPressed: () {
                         //ADD TO THE CART
+                        final cartProvider = Provider.of<CartProvider>(context);
+                        // cartProvider.addToCart(cartModel)
                       },
                       child: const Text(
                         "Add to Cart",

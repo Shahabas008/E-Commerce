@@ -1,3 +1,4 @@
+import 'package:ecommerce/data/model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -23,23 +24,19 @@ class ItemContainerSeeAllWidget extends StatelessWidget {
               childAspectRatio: MediaQuery.of(context).size.width /
                   (MediaQuery.of(context).size.height / 1.4),
               crossAxisCount: 2,
-              crossAxisSpacing: 8.0,
-              mainAxisSpacing: 11.0,
+              crossAxisSpacing: 10.0,
+              mainAxisSpacing: 15.0,
             ),
             itemBuilder: (context, index) {
-              final snap = dataProvider.eCommerceDataList[index];
+              ECommerceData eCommerceModel = dataProvider.eCommerceDataList[index];
               return GestureDetector(
                 onTap: () {
                   //NAVIGATE TO THE DETAILS PAGE
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => DetailsPage(
-                        productDescription: snap.description,
-                        productImage: snap.image,
-                        productPrice: snap.price,
-                        productRating: snap.rating.rate,
-                        productTitle: snap.title,
+                      builder: (_) => DetailsPage(ecommerceModel: eCommerceModel,
+
                       ),
                     ),
                   );
@@ -60,7 +57,7 @@ class ItemContainerSeeAllWidget extends StatelessWidget {
                             ),
                           ),
                           child: Image.network(
-                            snap.image,
+                            eCommerceModel.image,
                           ),
                         ),
                       ),
@@ -70,7 +67,9 @@ class ItemContainerSeeAllWidget extends StatelessWidget {
                        Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          snap.title,
+                          maxLines : 2,
+                          softWrap : true,
+                          eCommerceModel.title,
                           style: const TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
@@ -84,7 +83,7 @@ class ItemContainerSeeAllWidget extends StatelessWidget {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           overflow: TextOverflow.ellipsis,
-                          snap.description,
+                          eCommerceModel.description,
                         ),
                       ),
                       const SizedBox(
@@ -106,7 +105,7 @@ class ItemContainerSeeAllWidget extends StatelessWidget {
                                     ),
                                   ),
                                   TextSpan(
-                                    text: "${snap.rating.rate}",
+                                    text: "${eCommerceModel.rating.rate}",
                                     style: const TextStyle(
                                       fontSize: 18,
                                     ),
@@ -120,7 +119,7 @@ class ItemContainerSeeAllWidget extends StatelessWidget {
                             child: Align(
                               alignment: Alignment.centerRight,
                               child: Text(
-                                "₹ ${snap.price}",
+                                "₹ ${eCommerceModel.price}",
                                 style: TextStyle(
                                   color: primary,
                                 ),

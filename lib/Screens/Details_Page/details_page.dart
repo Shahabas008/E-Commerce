@@ -3,25 +3,17 @@ import 'package:ecommerce/Screens/Details_Page/widgets/footerbuttons.dart';
 import 'package:ecommerce/Screens/Details_Page/widgets/imagecontainer.dart';
 import 'package:ecommerce/Screens/Details_Page/widgets/reviewwidget.dart';
 import 'package:ecommerce/Screens/Details_Page/widgets/sellercontainerwidget.dart';
-import 'package:ecommerce/utils/colors/colors.dart';
+import 'package:ecommerce/data/model.dart';
 import 'package:flutter/material.dart';
 
 import '../Home/widgets/featuredProducts.dart';
 
 class DetailsPage extends StatelessWidget {
-  const DetailsPage(
-      {Key? key,
-      required this.productTitle,
-      required this.productPrice,
-      required this.productRating,
-      required this.productImage,
-      required this.productDescription})
-      : super(key: key);
-  final String productTitle;
-  final double productPrice;
-  final double productRating;
-  final String productImage;
-  final String productDescription;
+  const DetailsPage({
+    Key? key,
+    required this.ecommerceModel,
+  }) : super(key: key);
+  final ECommerceData ecommerceModel;
 
   @override
   Widget build(BuildContext context) {
@@ -40,14 +32,17 @@ class DetailsPage extends StatelessWidget {
               ),
               //IMAGE CONTAINER
               DetailImageContainerWidget(
-                productImage: productImage,
+                productImage: ecommerceModel.image,
               ),
               const SizedBox(
                 height: 5.0,
               ),
               Padding(
-                padding: const EdgeInsets.all(
+                padding: const EdgeInsets.fromLTRB(
                   25.0,
+                  25.0,
+                  25.0,
+                  0.0,
                 ),
                 child: Column(
                   children: [
@@ -55,11 +50,16 @@ class DetailsPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         //TITLE OF THE PRODUCT
-                        Text(
-                          productTitle,
-                          style: const TextStyle(
-                            fontSize: 24.0,
-                            fontWeight: FontWeight.w700,
+                        Expanded(
+                          child: Text(
+                            ecommerceModel.title,
+                            style: const TextStyle(
+                              fontSize: 24.0,
+                              fontWeight: FontWeight.w700,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            softWrap: false,
+                            maxLines: 1,
                           ),
                         ),
                       ],
@@ -71,7 +71,7 @@ class DetailsPage extends StatelessWidget {
                       children: [
                         Text(
                           //PRICE OF THE PRODUCT
-                          "₹ $productPrice",
+                          "₹ ${ecommerceModel.price}",
                           style: const TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 16.0,
@@ -93,7 +93,7 @@ class DetailsPage extends StatelessWidget {
                         ),
                         //RATING OF THE PRODUCT
                         Text(
-                          "$productRating",
+                          "${ecommerceModel.rating.rate}",
                           style: const TextStyle(
                             fontSize: 14.0,
                             fontWeight: FontWeight.w400,
@@ -150,7 +150,7 @@ class DetailsPage extends StatelessWidget {
                       height: 15.0,
                     ),
                     Text(
-                      productDescription,
+                      ecommerceModel.description,
                       style: const TextStyle(
                         fontSize: 14.0,
                         fontWeight: FontWeight.w400,
@@ -168,9 +168,6 @@ class DetailsPage extends StatelessWidget {
                       height: 30.0,
                     ),
                     const ReviewWidget(),
-                    const SizedBox(
-                      height: 30.0,
-                    ),
                   ],
                 ),
               ),
@@ -187,9 +184,9 @@ class DetailsPage extends StatelessWidget {
                   ),
                 ),
                 width: width,
-                height: height * 0.6,
+                height: height * 0.52,
                 child: const Padding(
-                  padding: EdgeInsets.fromLTRB(25.0, 20.0, 25.0, 0),
+                  padding: EdgeInsets.fromLTRB(5.0, 0, 5.0, 0),
                   child: FeaturedProductsWidget(
                     title: "Featured Products",
                     seeAllTitle: "Featured Products",
@@ -199,7 +196,9 @@ class DetailsPage extends StatelessWidget {
             ],
           ),
         ),
-        floatingActionButton:const FooterButtonsWidget(),
+        floatingActionButton: FooterButtonsWidget(
+          eCommerceModel: ecommerceModel,
+        ),
       ),
     );
   }

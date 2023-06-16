@@ -9,11 +9,11 @@ class CategoriesHome extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return SizedBox(
-      height: height * 0.2,
+      height: height * 0.19,
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: const EdgeInsets.fromLTRB(25.0, 0.0, 25.0, 0.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -21,8 +21,8 @@ class CategoriesHome extends StatelessWidget {
                   "Categories",
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.w600,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
                 TextButton(
@@ -40,7 +40,7 @@ class CategoriesHome extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            height: 10.0,
+            height: 16.0,
           ),
           //CATEGORIES
           SingleChildScrollView(
@@ -72,11 +72,15 @@ class CategoriesHome extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    const Text("Foods")
+                    const Text("Foods",
+                    style: TextStyle(
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.w400,
+                    ),)
                   ],
                 ),
                 const SizedBox(
-                  width: 25.0,
+                  width:32.0,
                 ),
                 //GIFT
                 Column(
@@ -104,7 +108,7 @@ class CategoriesHome extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(
-                  width: 25.0,
+                  width:32.0,
                 ),
                 Column(
                   children: [
@@ -131,7 +135,7 @@ class CategoriesHome extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(
-                  width: 25.0,
+                  width:32.0,
                 ),
                 Column(
                   children: [
@@ -158,7 +162,7 @@ class CategoriesHome extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(
-                  width: 25.0,
+                  width:32.0,
                 ),
                 Column(
                   children: [
@@ -185,7 +189,7 @@ class CategoriesHome extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(
-                  width: 25.0,
+                  width:32.0,
                 ),
                 Column(
                   children: [
@@ -212,7 +216,7 @@ class CategoriesHome extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(
-                  width: 25.0,
+                  width:32.0,
                 ),
               ],
             ),

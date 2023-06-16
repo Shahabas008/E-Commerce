@@ -14,7 +14,13 @@ class TextFormFieldWidget extends StatelessWidget {
         controller: searchController,
         decoration: InputDecoration(
           hintText: "Search Product Name",
-          hintStyle:  TextStyle(color: Colors.grey.shade400),
+          hintStyle: const TextStyle(
+            color: Color(
+              0xFFC4C5C4,
+            ),
+            fontSize: 14.0,
+            fontWeight: FontWeight.w500,
+          ),
           suffixIcon: const Icon(
             Icons.search_outlined,
             color: Colors.black,

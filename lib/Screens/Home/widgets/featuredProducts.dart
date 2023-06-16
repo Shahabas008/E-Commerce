@@ -1,10 +1,9 @@
 import 'package:ecommerce/Screens/Details_Page/details_page.dart';
 import 'package:ecommerce/Screens/SeeAll/seeallpage.dart';
+import 'package:ecommerce/data/model.dart';
 import 'package:ecommerce/utils/colors/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:image_card/image_card.dart';
 import 'package:provider/provider.dart';
-
 import '../../../data/dataprovider.dart';
 
 class FeaturedProductsWidget extends StatelessWidget {
@@ -22,148 +21,202 @@ class FeaturedProductsWidget extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     return Consumer<DataProvider>(
       builder: (context, dataProvider, _) {
-        return Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        return dataProvider.eCommerceDataList.isEmpty
+            ?  const CircularProgressIndicator()
+            : Column(
                 children: [
-                  Text(
-                    title,
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      //Navigate to the showDialog of the categories
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => SeeAllPage(
-                            title: seeAllTitle,
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20.0, 25.0, 20.0, 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          title,
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
-                      );
-                    },
-                    child: Text(
-                      "See all",
-                      style: TextStyle(
-                        color: primary,
-                      ),
+                        TextButton(
+                          onPressed: () {
+                            //Navigate to the showDialog of the categories
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => SeeAllPage(
+                                  title: seeAllTitle,
+                                ),
+                              ),
+                            );
+                          },
+                          child: Text(
+                            "See all",
+                            style: TextStyle(
+                              color: primary,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: 25.0,
-            ),
-            Row(children: [
-              const SizedBox(
-                width: 20.0,
-              ),
-              Expanded(
-                child: SizedBox(
-                  height: height * 0.32,
-                  child: ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 10,
-                    itemBuilder: (context, index) {
-                      final snap = dataProvider.eCommerceDataList[index];
-                      return GestureDetector(
-                        onTap: () {
-                          //NAVIGATE TO THE DETAILS PAGE
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) =>  DetailsPage(
-                                productDescription: snap.description ,
-                                productImage: snap.image ,
-                                productPrice: snap.price,
-                                productRating: snap.rating.rate,
-                                productTitle: snap.title,
-                              ),
-                            ),
-                          );
-                        },
-                        child: SizedBox(
-                          width: width * 0.5,
-                          height: height * 0.5,
-                          child: FillImageCard(
-                            contentPadding: const EdgeInsets.all(8.0),
-                            heightImage: 100,
-                            imageProvider: NetworkImage(snap.image),
-                            title: Text(
-                              snap.title,
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            description: Text(
-                              "₹ ${snap.price}",
-                              style: const TextStyle(
-                                color: Colors.red,
-                              ),
-                            ),
-                            footer: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                RichText(
-                                  text: TextSpan(
+                  const SizedBox(
+                    height: 24.0,
+                  ),
+                  Row(children: [
+                    // const SizedBox(
+                    //   width: 20.0,
+                    // ),
+                    Expanded(
+                      child: SizedBox(
+                        height: height * 0.285,
+                        child: ListView.separated(
+                          padding: EdgeInsets.only(left: 15.0),
+                          scrollDirection: Axis.horizontal,
+                          itemCount: 10,
+                          itemBuilder: (context, index) {
+                            final ECommerceData eCommerceModel =
+                                dataProvider.eCommerceDataList[index];
+                            return GestureDetector(
+                              onTap: () {
+                                //NAVIGATE TO THE DETAILS PAGE
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => DetailsPage(
+                                        ecommerceModel: eCommerceModel),
+                                  ),
+                                );
+                              },
+                              child: Container(
+                                  decoration: const BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(
+                                        10.0,
+                                      ),
+                                    ),
+                                  ),
+                                  width: width * 0.5,
+                                  height: height * 0.5,
+                                  child: Column(
                                     children: [
-                                      const WidgetSpan(
-                                        child: Icon(
-                                          Icons.star,
-                                          size: 14,
-                                          color: Colors.yellow,
+                                      Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            12.5, 15.0, 18.5, 25.0),
+                                        child: SizedBox(
+                                          width: width,
+                                          height: height * 0.09,
+                                          child: Image.network(
+                                            eCommerceModel.image,
+                                            width: width,
+                                            height: height,
+                                            // fit: BoxFit.contain,
+                                          ),
                                         ),
                                       ),
-                                      TextSpan(
-                                        text: "${snap.rating.rate}",
+                                      Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                          10.0,
+                                          0.0,
+                                          15.0,
+                                          15.0,
+                                        ),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              eCommerceModel.title,
+                                              maxLines: 1,
+                                              softWrap: true,
+                                              style: const TextStyle(
+                                                fontSize: 14.0,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              height: 4.0,
+                                            ),
+                                            Text(
+                                              eCommerceModel.price.toString(),
+                                              textAlign: TextAlign.left,
+                                              style: const TextStyle(
+                                                color: Color(0xFFFE3A30),
+                                                fontSize: 12.0,
+                                                fontWeight: FontWeight.w700,
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              height: 10.5,
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                RichText(
+                                                  text: const TextSpan(
+                                                    children: [
+                                                      WidgetSpan(
+                                                        child: Icon(
+                                                          Icons.star,
+                                                          size: 15.0,
+                                                          color: Color(
+                                                            0xFFFFC120,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      TextSpan(
+                                                        text: "5.0",
+                                                        style: TextStyle(
+                                                          fontSize: 10.0,
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                const Text(
+                                                  "80 Reviews",
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 10.0,
+                                                  ),
+                                                ),
+                                                IconButton(
+                                                  onPressed: () {
+                                                    //MORE
+                                                  },
+                                                  icon: const Icon(
+                                                    Icons.more_vert,
+                                                    size: 18.0,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ],
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 10.0,
-                                ),
-                                Text("${snap.rating.count} Reviews"),
-                                const SizedBox(
-                                  width: 10.0,
-                                ),
-                                IconButton(
-                                  onPressed: () {
-                                    //Navigate to the product Action
-                                  },
-                                  icon: const Icon(
-                                    Icons.more_vert,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+                                  )),
+                            );
+                          },
+                          separatorBuilder: (context, index) {
+                            return const SizedBox(
+                              width: 25.0,
+                            );
+                          },
                         ),
-                      );
-                    },
-                    separatorBuilder: (context, index) {
-                      return const SizedBox(
-                        width: 25.0,
-                      );
-                    },
-                  ),
-                ),
-              ),
-              const SizedBox(
-                width: 20.0,
-              ),
-            ]),
-          ],
-        );
+                      ),
+                    ),
+                    // const SizedBox(
+                    //   width: 20.0,
+                    // ),
+                  ]),
+                ],
+              );
       },
     );
   }

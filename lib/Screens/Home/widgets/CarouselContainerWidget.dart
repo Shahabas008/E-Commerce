@@ -12,7 +12,7 @@ class CarouselContainerWidget extends StatelessWidget {
       child: Row(
         children: [
           const SizedBox(
-            width: 20.0,
+            width: 25.0,
           ),
           ClipRRect(
             borderRadius: BorderRadius.circular(20.0),
