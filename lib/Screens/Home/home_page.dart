@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
                 height: 30.0,
               ),
               //Image Carousel Container
-              const CarouselContainerWidget(),
+               CarouselContainerWidget(),
               const SizedBox(
                 height: 30.0,
               ),
@@ -65,31 +65,31 @@ class _HomePageState extends State<HomePage> {
                     topRight: Radius.circular(20),
                   ),
                 ),
-                child: const Column(
+                child:  Column(
                   children: [
-                    FeaturedProductsWidget(
+                   const FeaturedProductsWidget(
                       title: "Featured Products",
                       seeAllTitle: "Featured Products",
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 40.0,
                     ),
                     CarouselContainerWidget(),
-                    SizedBox(
+                    const SizedBox(
                       height: 20.0,
                     ),
-                    FeaturedProductsWidget(
+                    const FeaturedProductsWidget(
                       title: "Best Sellers",
                       seeAllTitle: "Best Sellers",
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 40.0,
                     ),
                     CarouselContainerWidget(),
-                    SizedBox(
+                    const SizedBox(
                       height: 20.0,
                     ),
-                    FeaturedProductsWidget(
+                    const FeaturedProductsWidget(
                       title: "New Arrivals",
                       seeAllTitle: "New Arrivals",
                     ),

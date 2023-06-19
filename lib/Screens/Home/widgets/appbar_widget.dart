@@ -1,3 +1,4 @@
+import 'package:ecommerce/Screens/Home/homeprovider.dart';
 import 'package:ecommerce/data/dataprovider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -20,23 +21,25 @@ class AppBarHome extends StatelessWidget {
         ),
       ),
       centerTitle: true,
-    //   actions: [
-    //     IconButton(
-    //       onPressed: () {
-    //         //NAVIGATING TO THE WISHLIST
-    //       },
-    //       icon: const Icon(
-    //         Icons.favorite_border,
-    //         color: Colors.black,
-    //       ),
-    //     ),
-    //     IconButton(
-    //       onPressed: () {
-    //         //NAVIGATING TO THE CART
-    //       },
-    //       icon: const Icon(Icons.shopping_cart_outlined, color: Colors.black),
-    //     ),
-    //   ],
+      actions: [
+        IconButton(
+          onPressed: () {
+            //NAVIGATING TO THE WISHLIST
+          },
+          icon: const Icon(
+            Icons.favorite_border,
+            color: Colors.black,
+          ),
+        ),
+        IconButton(
+          onPressed: () {
+            //NAVIGATING TO THE CART
+            final dataProvider = Provider.of<HomeProvider>(context , listen: false);
+            dataProvider.allThumbNail(context: context);
+          },
+          icon: const Icon(Icons.shopping_cart_outlined, color: Colors.black),
+        ),
+      ],
     );
   }
 }

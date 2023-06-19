@@ -1,9 +1,9 @@
-import 'package:ecommerce/Screens/Account_Page/account_page.dart';
-import 'package:ecommerce/Screens/Details_Page/details_page.dart';
+import 'package:ecommerce/Screens/Home/home_page.dart';
 import 'package:ecommerce/data/dataprovider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'Screens/widgets/bottomnavigationbar.dart';
+
+import 'Screens/Home/homeprovider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,10 +16,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => DataProvider()),
+        ChangeNotifierProvider<DataProvider>(create: (_) => DataProvider()),
+        ChangeNotifierProvider<HomeProvider>(create: (_) => HomeProvider()),
       ],
       child: MaterialApp(
         theme: ThemeData(
+          scaffoldBackgroundColor: Colors.white,
           fontFamily: "DMSans",
           appBarTheme: const AppBarTheme(
             iconTheme: IconThemeData(
@@ -28,11 +30,11 @@ class MyApp extends StatelessWidget {
           ),
         ),
         debugShowCheckedModeBanner: false,
-        home: const AccountPage()
+        home: const HomePage()
       ),
     );
   }
 }
 
-
-// DetailsPage(productTitle: "MANCHESTER UNITED JERSEY JERSEY JERSEY", productPrice: 1500, productRating: 5.0, productImage: "assets/images/user1.jpg", productDescription: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of Screens.Account_Page.model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.")
+//the figma design
+//https://www.figma.com/file/cWgHFDMUiX2mDvE4mtiBZ0/E-Commerce---Mobile-Apps-(Community)?type=design&node-id=16-3670&t=yD57XoiHewst9VLR-0

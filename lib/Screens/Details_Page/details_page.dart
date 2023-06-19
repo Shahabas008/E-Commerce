@@ -13,7 +13,7 @@ class DetailsPage extends StatelessWidget {
     Key? key,
     required this.ecommerceModel,
   }) : super(key: key);
-  final ECommerceData ecommerceModel;
+  final Product ecommerceModel;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class DetailsPage extends StatelessWidget {
               ),
               //IMAGE CONTAINER
               DetailImageContainerWidget(
-                productImage: ecommerceModel.image,
+                productImage: ecommerceModel.images,
               ),
               const SizedBox(
                 height: 5.0,
@@ -93,7 +93,7 @@ class DetailsPage extends StatelessWidget {
                         ),
                         //RATING OF THE PRODUCT
                         Text(
-                          "${ecommerceModel.rating.rate}",
+                          "${ecommerceModel.rating}",
                           style: const TextStyle(
                             fontSize: 14.0,
                             fontWeight: FontWeight.w400,

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class FooterButtonsWidget extends StatelessWidget {
   const FooterButtonsWidget({Key? key , required this.eCommerceModel}) : super(key: key);
-  final ECommerceData eCommerceModel;
+  final Product eCommerceModel;
 
   @override
   Widget build(BuildContext context) {

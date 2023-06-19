@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 
 import '../../Cart/cartprovider.dart';
 
-void showBottomSheetFunction({required BuildContext context, required ECommerceData eCommerceModel}) {
+void showBottomSheetFunction({required BuildContext context, required  eCommerceModel}) {
   final width = MediaQuery.of(context).size.width;
   final height = MediaQuery.of(context).size.height;
   showModalBottomSheet(
@@ -251,7 +251,7 @@ void showBottomSheetFunction({required BuildContext context, required ECommerceD
                       height: 10.0,
                     ),
                      Text(
-                      "₹ ${eCommerceModel.price}",
+                      "₹ ${eCommerceModel}",
                       style: const TextStyle(
                         fontSize: 14.0,
                         fontWeight: FontWeight.w700,

@@ -5,7 +5,7 @@ class MoreSettingsList extends StatelessWidget {
   MoreSettingsList({Key? key}) : super(key: key);
 
   List<MoreSettingListModel> moreSettingsListName = [
-    MoreSettingListModel("setting", Icons.settings),
+    MoreSettingListModel("setting", Icons.settings_outlined),
     MoreSettingListModel("Orders", Icons.add_shopping_cart_outlined),
     MoreSettingListModel("Community", Icons.people_outline),
     MoreSettingListModel("Support", Icons.support_agent_outlined),

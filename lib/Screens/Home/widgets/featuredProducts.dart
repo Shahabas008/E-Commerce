@@ -1,10 +1,9 @@
-import 'package:ecommerce/Screens/Details_Page/details_page.dart';
 import 'package:ecommerce/Screens/SeeAll/seeallpage.dart';
-import 'package:ecommerce/data/model.dart';
 import 'package:ecommerce/utils/colors/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../data/dataprovider.dart';
+import '../../Details_Page/details_page.dart';
 
 class FeaturedProductsWidget extends StatelessWidget {
   const FeaturedProductsWidget({
@@ -21,8 +20,8 @@ class FeaturedProductsWidget extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     return Consumer<DataProvider>(
       builder: (context, dataProvider, _) {
-        return dataProvider.eCommerceDataList.isEmpty
-            ?  const CircularProgressIndicator()
+        return dataProvider.eCommerceDataModel == null
+            ? const CircularProgressIndicator()
             : Column(
                 children: [
                   Padding(
@@ -71,20 +70,21 @@ class FeaturedProductsWidget extends StatelessWidget {
                       child: SizedBox(
                         height: height * 0.285,
                         child: ListView.separated(
-                          padding: EdgeInsets.only(left: 15.0),
+                          padding: const EdgeInsets.only(left: 15.0),
                           scrollDirection: Axis.horizontal,
                           itemCount: 10,
                           itemBuilder: (context, index) {
-                            final ECommerceData eCommerceModel =
-                                dataProvider.eCommerceDataList[index];
+                            final eCommerceObject =
+                                dataProvider.eCommerceDataModel!.products[index];
                             return GestureDetector(
                               onTap: () {
                                 //NAVIGATE TO THE DETAILS PAGE
+
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (_) => DetailsPage(
-                                        ecommerceModel: eCommerceModel),
+                                        ecommerceModel: eCommerceObject),
                                   ),
                                 );
                               },
@@ -108,7 +108,7 @@ class FeaturedProductsWidget extends StatelessWidget {
                                           width: width,
                                           height: height * 0.09,
                                           child: Image.network(
-                                            eCommerceModel.image,
+                                            eCommerceObject.images.first,
                                             width: width,
                                             height: height,
                                             // fit: BoxFit.contain,
@@ -127,7 +127,7 @@ class FeaturedProductsWidget extends StatelessWidget {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              eCommerceModel.title,
+                                              eCommerceObject.title,
                                               maxLines: 1,
                                               softWrap: true,
                                               style: const TextStyle(
@@ -139,7 +139,7 @@ class FeaturedProductsWidget extends StatelessWidget {
                                               height: 4.0,
                                             ),
                                             Text(
-                                              eCommerceModel.price.toString(),
+                                              " ${eCommerceObject.price}",
                                               textAlign: TextAlign.left,
                                               style: const TextStyle(
                                                 color: Color(0xFFFE3A30),

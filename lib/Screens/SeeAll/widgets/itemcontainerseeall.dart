@@ -19,7 +19,7 @@ class ItemContainerSeeAllWidget extends StatelessWidget {
           width: width,
           height: height,
           child: GridView.builder(
-            itemCount: dataProvider.eCommerceDataList.length,
+            itemCount: dataProvider.eCommerceDataModel!.limit,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               childAspectRatio: MediaQuery.of(context).size.width /
                   (MediaQuery.of(context).size.height / 1.4),
@@ -28,7 +28,8 @@ class ItemContainerSeeAllWidget extends StatelessWidget {
               mainAxisSpacing: 15.0,
             ),
             itemBuilder: (context, index) {
-              ECommerceData eCommerceModel = dataProvider.eCommerceDataList[index];
+              final  eCommerceObject = dataProvider.eCommerceDataModel;
+              final eCommerceModel = eCommerceObject!.products[index];
               return GestureDetector(
                 onTap: () {
                   //NAVIGATE TO THE DETAILS PAGE
@@ -57,7 +58,7 @@ class ItemContainerSeeAllWidget extends StatelessWidget {
                             ),
                           ),
                           child: Image.network(
-                            eCommerceModel.image,
+                            eCommerceModel.images.first,
                           ),
                         ),
                       ),
@@ -105,7 +106,7 @@ class ItemContainerSeeAllWidget extends StatelessWidget {
                                     ),
                                   ),
                                   TextSpan(
-                                    text: "${eCommerceModel.rating.rate}",
+                                    text: "${eCommerceModel.rating}",
                                     style: const TextStyle(
                                       fontSize: 18,
                                     ),

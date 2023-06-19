@@ -5,87 +5,90 @@
 import 'package:meta/meta.dart';
 import 'dart:convert';
 
-List<ECommerceData> eCommerceDataFromJson(String str) => List<ECommerceData>.from(json.decode(str).map((x) => ECommerceData.fromJson(x)));
+ECommerceData eCommerceDataFromJson(String str) => ECommerceData.fromJson(json.decode(str));
 
-String eCommerceDataToJson(List<ECommerceData> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String eCommerceDataToJson(ECommerceData data) => json.encode(data.toJson());
 
 class ECommerceData {
-  final int id;
-  final String title;
-  final double price;
-  final String description;
-  final Category category;
-  final String image;
-  final Rating rating;
+  late final List<Product> products;
+  final int total;
+  final int skip;
+  final int limit;
 
   ECommerceData({
-    required this.id,
-    required this.title,
-    required this.price,
-    required this.description,
-    required this.category,
-    required this.image,
-    required this.rating,
+    required this.products,
+    required this.total,
+    required this.skip,
+    required this.limit,
   });
 
   factory ECommerceData.fromJson(Map<String, dynamic> json) => ECommerceData(
+    products: List<Product>.from(json["products"].map((x) => Product.fromJson(x))),
+    total: json["total"],
+    skip: json["skip"],
+    limit: json["limit"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "products": List<dynamic>.from(products.map((x) => x.toJson())),
+    "total": total,
+    "skip": skip,
+    "limit": limit,
+  };
+}
+
+class Product {
+  final int id;
+  final String title;
+  final String description;
+  final int price;
+  final double discountPercentage;
+  final double rating;
+  final int stock;
+  final String brand;
+  final String category;
+  final String thumbnail;
+  final List<String> images;
+
+  Product({
+    required this.id,
+    required this.title,
+    required this.description,
+    required this.price,
+    required this.discountPercentage,
+    required this.rating,
+    required this.stock,
+    required this.brand,
+    required this.category,
+    required this.thumbnail,
+    required this.images,
+  });
+
+  factory Product.fromJson(Map<String, dynamic> json) => Product(
     id: json["id"],
     title: json["title"],
-    price: json["price"]?.toDouble(),
     description: json["description"],
-    category: categoryValues.map[json["category"]]!,
-    image: json["image"],
-    rating: Rating.fromJson(json["rating"]),
+    price: json["price"],
+    discountPercentage: json["discountPercentage"]?.toDouble(),
+    rating: json["rating"]?.toDouble(),
+    stock: json["stock"],
+    brand: json["brand"],
+    category: json["category"],
+    thumbnail: json["thumbnail"],
+    images: List<String>.from(json["images"].map((x) => x)),
   );
 
   Map<String, dynamic> toJson() => {
     "id": id,
     "title": title,
-    "price": price,
     "description": description,
-    "category": categoryValues.reverse[category],
-    "image": image,
-    "rating": rating.toJson(),
+    "price": price,
+    "discountPercentage": discountPercentage,
+    "rating": rating,
+    "stock": stock,
+    "brand": brand,
+    "category": category,
+    "thumbnail": thumbnail,
+    "images": List<dynamic>.from(images.map((x) => x)),
   };
-}
-
-enum Category { MEN_S_CLOTHING, JEWELERY, ELECTRONICS, WOMEN_S_CLOTHING }
-
-final categoryValues = EnumValues({
-  "electronics": Category.ELECTRONICS,
-  "jewelery": Category.JEWELERY,
-  "men's clothing": Category.MEN_S_CLOTHING,
-  "women's clothing": Category.WOMEN_S_CLOTHING
-});
-
-class Rating {
-  final double rate;
-  final int count;
-
-  Rating({
-    required this.rate,
-    required this.count,
-  });
-
-  factory Rating.fromJson(Map<String, dynamic> json) => Rating(
-    rate: json["rate"]?.toDouble(),
-    count: json["count"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "rate": rate,
-    "count": count,
-  };
-}
-
-class EnumValues<T> {
-  Map<String, T> map;
-  late Map<T, String> reverseMap;
-
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    reverseMap = map.map((k, v) => MapEntry(v, k));
-    return reverseMap;
-  }
 }

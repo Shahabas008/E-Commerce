@@ -1,6 +1,3 @@
-import 'dart:developer';
-
-import 'package:ecommerce/Screens/Home/widgets/featuredProducts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
